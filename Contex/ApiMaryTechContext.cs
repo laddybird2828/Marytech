@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 using ApiMaryTech.Models;
 
 
-namespace ApiMaryTech.Contex
+namespace ApiMaryTech.Context
 {
     
-        public class ApiMaryTech: DbContext
+        public class ApiMaryTechContext: DbContext
     {
-        public ApiMaryTech(DbContextOptions options) : base(options) { }
+        public ApiMaryTechContext(DbContextOptions options) : base(options) { }
 
         public DbSet<Cliente>? Clientes { get; set; }
         public DbSet<Produto>? Produtos { get; set; }

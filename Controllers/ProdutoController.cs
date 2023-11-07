@@ -70,7 +70,7 @@ namespace ApiMaryTech.Controllers
             if(produtos is null) 
                 return NotFound();
 
-            _context.Disciplinas.Remove(produtos);
+            _context.Produto.Remove(produtos);
             _context.SaveChanges();
 
             return Ok(produtos);
