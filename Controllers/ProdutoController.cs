@@ -38,42 +38,42 @@ namespace ApiMaryTech.Controllers
             if(produtos is null)
                 return NotFound("Produto não encontrado");
             
-            return disciplina;
+            return produtos;
         }
 
         
         [HttpPost]
-        public ActionResult Post(Disciplina disciplinas){
-            _context.Disciplinas.Add(disciplinas);
+        public ActionResult Post(Produto produtos){
+            _context.Produto.Add(produtos);
             _context.SaveChanges();
 
-            return new CreatedAtRouteResult("GetDisciplinas",
-                new{id = disciplinas.Id},
-                disciplinas);
+            return new CreatedAtRouteResult("GetProduto",
+                new{id = produtos.Id},
+                produtos);
                 
         }
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, Disciplina disciplina){
-            if(id != disciplina.Id)
+        public ActionResult Put(int id, Produto produtos){
+            if(id != produtos.Id)
                 return BadRequest();
 
-            _context.Entry(disciplina).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Entry(produtos).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
 
-            return Ok(disciplina);
+            return Ok(produtos);
         }
 
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id){
-            var disciplina = _context.Disciplinas.FirstOrDefault(p => p.Id == id);
+            var produtos = _context.Produto.FirstOrDefault(p => p.Id == id);
             
-            if(disciplina is null) 
+            if(produtos is null) 
                 return NotFound();
 
-            _context.Disciplinas.Remove(disciplina);
+            _context.Disciplinas.Remove(produtos);
             _context.SaveChanges();
 
-            return Ok(disciplina);
+            return Ok(produtos);
         }
 
     }
