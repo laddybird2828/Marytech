@@ -13,23 +13,23 @@ namespace apiMaryTechContex.Controllers
     [Route("[controller]")]
     public class ClienteController : ControllerBase
     {
-        private readonly ILogger<AlunoController> _logger;
-        private readonly ApiUniversidadeContext _context;
+        private readonly ILogger<ClienteController> _logger;
+        private readonly ApiMaryTechContext _context;
 
-        public AlunoController(ILogger<AlunoController> logger, ApiUniversidadeContext context)
+        public ClienteController(ILogger<ClienteController> logger, ApiMaryTechContext context)
         {
             _logger = logger;
             _context = context;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Aluno>> Get()
+        public ActionResult<IEnumerable<Cliente>> Get()
         {
-           var alunos = _context.Alunos.ToList();
-           if(alunos is null)
+           var clientes = _context.Clientes.ToList();
+           if(clientes is null)
                 return NotFound();
 
-            return alunos;
+            return clientes;
         }
 
         [HttpGet("{id:int}", Name="GetAluno")]
