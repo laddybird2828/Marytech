@@ -13,67 +13,67 @@ namespace apiMaryTechContex.Controllers
     [Route("[controller]")]
     public class ClienteController : ControllerBase
     {
-        private readonly ILogger<AlunoController> _logger;
-        private readonly ApiUniversidadeContext _context;
+        private readonly ILogger<ClienteController> _logger;
+        private readonly ApiMaryTechContext _context;
 
-        public AlunoController(ILogger<AlunoController> logger, ApiUniversidadeContext context)
+        public ClienteController(ILogger<ClienteController> logger, ApiMaryTechContext context)
         {
             _logger = logger;
             _context = context;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Aluno>> Get()
+        public ActionResult<IEnumerable<Cliente>> Get()
         {
-           var alunos = _context.Alunos.ToList();
-           if(alunos is null)
+           var clientes = _context.Clientes.ToList();
+           if(clientes is null)
                 return NotFound();
 
-            return alunos;
+            return clientes;
         }
 
-        [HttpGet("{id:int}", Name="GetAluno")]
-        public ActionResult<Aluno> Get(int id)
+        [HttpGet("{id:int}", Name="GetCliente")]
+        public ActionResult<Cliente> Get(int id)
         {
-           var alunos = _context.Alunos.FirstOrDefault(p => p.Id == id);
-           if(alunos is null)
-                return NotFound("Aluno não encontrado.");
+           var clientes = _context.Clientes.FirstOrDefault(p => p.Id == id);
+           if(clientes is null)
+                return NotFound("Cliente não encontrado! ;-;");
 
-            return alunos;
+            return clientes;
         }
  
         [HttpPost]
-        public ActionResult Post(Aluno aluno){
-            _context.Alunos.Add(aluno);
+        public ActionResult Post(Cliente cliente){
+            _context.Clientes.Add(cliente);
             _context.SaveChanges();
 
-            return new CreatedAtRouteResult("GetAluno", 
-                new{ id = aluno.Id},
-                aluno);
+            return new CreatedAtRouteResult("GetCliente", 
+                new{ id = cliente.Id},
+                cliente);
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, Aluno aluno){
-            if(id != aluno.Id)
+        public ActionResult Put(int id, Cliente cliente){
+            if(id != cliente.Id)
                 return BadRequest();
 
-            _context.Entry(aluno).State = EntityState.Modified;
+            _context.Entry(cliente).State = EntityState.Modified;
             _context.SaveChanges();
 
-            return Ok(aluno);
+            return Ok(cliente);
         }
 
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id){
-            var aluno = _context.Alunos.FirstOrDefault(p => p.Id == id);
+            var cliente = _context.Clientes.FirstOrDefault(p => p.Id == id);
 
-            if(aluno is null)
+            if(cliente is null)
                 return NotFound();
 
-            _context.Alunos.Remove(aluno);
+            _context.Clientes.Remove(cliente);
             _context.SaveChanges();
 
-            return Ok(aluno);
+            return Ok(cliente);
         }
 
     }
