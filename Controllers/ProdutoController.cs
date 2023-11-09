@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using ApiMaryTech.Models;
 using ApiMaryTech.Context;
+using ApiMaryTech.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiMaryTech.Controllers
 {
@@ -24,7 +26,7 @@ namespace ApiMaryTech.Controllers
     [HttpGet]
         public ActionResult<IEnumerable<Produto>> Get()
         {
-            var produtos = _context.Produto.ToList();
+            var produtos = _context.Produtos.ToList();
             if(produtos is null)
                 return NotFound();
             
@@ -34,7 +36,7 @@ namespace ApiMaryTech.Controllers
         [HttpGet("{id:int}", Name ="GetProduto")]
         public ActionResult<Produto> Get(int id)
         {
-            var produtos = _context.Produto.FirstOrDefault(p => p.Id == id);
+            var produtos = _context.Produtos.FirstOrDefault(p => p.Id == id);
             if(produtos is null)
                 return NotFound("Produto não encontrado");
             
@@ -44,7 +46,7 @@ namespace ApiMaryTech.Controllers
         
         [HttpPost]
         public ActionResult Post(Produto produtos){
-            _context.Produto.Add(produtos);
+            _context.Produtos.Add(produtos);
             _context.SaveChanges();
 
             return new CreatedAtRouteResult("GetProduto",
@@ -65,12 +67,12 @@ namespace ApiMaryTech.Controllers
 
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id){
-            var produtos = _context.Produto.FirstOrDefault(p => p.Id == id);
+            var produtos = _context.Produtos.FirstOrDefault(p => p.Id == id);
             
             if(produtos is null) 
                 return NotFound();
 
-            _context.Produto.Remove(produtos);
+            _context.Produtos.Remove(produtos);
             _context.SaveChanges();
 
             return Ok(produtos);
