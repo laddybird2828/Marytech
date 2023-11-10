@@ -1,6 +1,14 @@
 
 
+using ApiMaryTech.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+var connectionString = builder.Configuration.GetConnectionString("PostgreSQL");
+builder.Services.AddDbContext<ApiMaryTechContext>(options => options.UseNpgsql(connectionString));
 
 // Add services to the container.
 

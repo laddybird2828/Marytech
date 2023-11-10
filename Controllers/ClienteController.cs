@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using apiMaryTechContex.Models;
-using apiMaryTechContex.Context;
+using ApiMaryTech.Context;
+using ApiMaryTech.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace apiMaryTechContex.Controllers
+namespace ApiMaryTech.Controllers
 {
     [ApiController]
     [Route("[controller]")]

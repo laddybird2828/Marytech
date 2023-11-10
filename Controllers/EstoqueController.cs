@@ -45,37 +45,37 @@ namespace ApiMaryTech.Controllers
         }
  
         [HttpPost]
-        public ActionResult Post(Estoque estoques){
-            _context.Estoques.Add(estoques);
+        public ActionResult Post(Estoque estoque){
+            _context.Estoques.Add(estoque);
             _context.SaveChanges();
 
-            return new CreatedAtRouteResult("GetEstoques", 
-                new{ id = estoques.Id},
-                estoques);
+            return new CreatedAtRouteResult("GetEstoque", 
+                new{ id = estoque.Id},
+                estoque);
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, Estoque estoques){
-            if(id != estoques.Id)
+        public ActionResult Put(int id, Estoque estoque){
+            if(id != estoque.Id)
                 return BadRequest();
 
-            _context.Entry(estoques).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Entry(estoque).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
 
-            return Ok(estoques);
+            return Ok(estoque);
         }
 
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id){
-            var estoques = _context.Estoques.FirstOrDefault(p => p.Id == id);
+            var estoque = _context.Estoques.FirstOrDefault(p => p.Id == id);
             
-            if(estoques is null) 
+            if(estoque is null) 
                 return NotFound();
 
-            _context.Estoques.Remove(estoques);
+            _context.Estoques.Remove(estoque);
             _context.SaveChanges();
 
-            return Ok(estoques);
+            return Ok(estoque);
         }
 
     }   
