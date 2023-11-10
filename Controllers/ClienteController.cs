@@ -22,7 +22,7 @@ namespace ApiMaryTech.Controllers
             _logger = logger;
             _context = context;
         }
-
+        
         [HttpGet]
         public ActionResult<IEnumerable<Cliente>> Get()
         {
