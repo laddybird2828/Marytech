@@ -23,7 +23,7 @@ namespace ApiMaryTech.Controllers
             _context = context;
         }
 
-    [HttpGet]
+        [HttpGet]
         public ActionResult<IEnumerable<Produto>> Get()
         {
             var produtos = _context.Produtos.ToList();

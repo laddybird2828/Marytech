@@ -16,65 +16,78 @@ namespace ApiMaryTech.Controllers
     {
         private readonly ILogger<CompraController> _logger;
         private readonly ApiMaryTechContext _context;
-        public CompraController(ILogger<CompraController> logger, ApiMaryTechContext context)
+
+
+        public CompraController (ILogger<CompraController> logger, ApiMaryTechContext context)
         {
             _logger = logger;
             _context = context;
         }
-        
-    [HttpGet]
-    public ActionResult<IEnumerable<Compra>> Get()
-    {
-        var compras = _context.Compras.Include(c => c.Cliente).Include(c => c.Produto).ToList();
-        if (compras.Count == 0)
-            return NotFound();
 
-        return compras;
-    }
 
-    [HttpPost]
-    public ActionResult Post(Compra compra)
-    {
-        _context.Compras.Add(compra);
-        _context.SaveChanges();
+        [HttpGet]
+        public ActionResult<IEnumerable<Compra>> Get()
+        {
+            var compras = _context.Compras.ToList();
+            if(compras is null)
+                return NotFound();
+           
+            return compras;
+        }
 
-        return new CreatedAtRouteResult("GetCompra", new { id = compra.Id }, compra);
-    }
 
-    [HttpGet("{id:int}", Name = "GetCompra")]
-    public ActionResult<Compra> Get(int id)
-    {
-        var compra = _context.Compras.Include(c => c.Cliente).Include(c => c.Produto).FirstOrDefault(p => p.Id == id);
-        if (compra is null)
-            return NotFound("Compra não encontrada.");
+        [HttpGet("{id:int}", Name ="GetCompra")]
+        public ActionResult<Compra> Get(int id)
+        {
+            var compras = _context.Compras.FirstOrDefault(p => p.Id == id);
+            if(compras is null)
+                return NotFound("Compra não encontrado");
+           
+            return compras;
+        }
 
-        return compra;
-    }
 
-    [HttpPut("{id:int}")]
-    public ActionResult Put(int id, Compra compra)
-    {
-        if (id != compra.Id)
-            return BadRequest();
+       
+        [HttpPost]
+        public ActionResult Post(Compra compra){
+            _context.Compras.Add(compra);
+            _context.SaveChanges();
 
-        _context.Entry(compra).State = EntityState.Modified;
-        _context.SaveChanges();
 
-        return Ok(compra);
-    }
+            return new CreatedAtRouteResult("GetCompra",
+                new{id = compra.Id},
+                compra);
+               
+        }
+        [HttpPut("{id:int}")]
+        public ActionResult Put(int id, Compra compra){
+            if(id != compra.Id)
+                return BadRequest();
 
-    [HttpDelete("{id:int}")]
-    public ActionResult Delete(int id)
-    {
-        var compra = _context.Compras.FirstOrDefault(p => p.Id == id);
 
-        if (compra is null)
-            return NotFound();
+            _context.Entry(compra).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.SaveChanges();
 
-        _context.Compras.Remove(compra);
-        _context.SaveChanges();
 
-        return Ok(compra);
+            return Ok(compra);
+        }
+
+
+        [HttpDelete("{id:int}")]
+        public ActionResult Delete(int id){
+            var compras = _context.Compras.FirstOrDefault(p => p.Id == id);
+           
+            if(compras is null)
+                return NotFound();
+
+
+            _context.Compras.Remove(compras);
+            _context.SaveChanges();
+
+
+            return Ok(compras);
+        }
+
+
     }
 }
-}  
