@@ -7,7 +7,7 @@ using ApiMaryTech.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 
-namespace ApiMaryTech.Context;
+namespace ApiMaryTech.Context{
 
     
         public class ApiMaryTechContext: IdentityDbContext
@@ -19,4 +19,4 @@ namespace ApiMaryTech.Context;
         public DbSet<Compra>? Compras { get; set; }
        
     }
-
+}
