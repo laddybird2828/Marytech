@@ -14,6 +14,26 @@ namespace ApiMaryTech.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Authorize(AuthenticationSchemes ="Bearer")]
+    [Route("api/{v:apiversion}/curso")]
+
+    public class ProdutoControllerV2 : ControllerBase
+    {
+        private readonly ILogger<ProdutoController> _logger;
+        private readonly ApiMaryTechContext _context; 
+
+        public ProdutoControllerV2 (ILogger<ProdutoController> logger, ApiMaryTechContext context)
+        {
+            _logger = logger;
+            _context = context;
+        }
+
+        [HttpGet(Name ="GetExemplo")]
+        [Route("exemplo")]
+        public String GetExemplo()
+        {
+            return "Api v2";
+        }
+
     public class ProdutoController : ControllerBase
     {
         private readonly ILogger<ProdutoController> _logger;
@@ -81,4 +101,5 @@ namespace ApiMaryTech.Controllers
         }
 
     }
+}
 }
