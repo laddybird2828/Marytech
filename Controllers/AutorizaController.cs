@@ -96,7 +96,7 @@ namespace ApiMaryTech.Controllers
         if(result.Succeeded)
             return Ok(GeraToken(userInfo));
         else{
-            ModelState.AddModelError(string.Empty, "Login Invalido seu bobão");
+            ModelState.AddModelError(string.Empty, "Login Inválido seu bobão");
             return BadRequest(ModelState);
 
         }

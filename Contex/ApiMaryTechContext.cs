@@ -7,8 +7,8 @@ using ApiMaryTech.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 
-namespace ApiMaryTech.Context
-{
+namespace ApiMaryTech.Context{
+
     
         public class ApiMaryTechContext: IdentityDbContext
     {
