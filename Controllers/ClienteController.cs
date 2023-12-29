@@ -15,7 +15,7 @@ namespace ApiMaryTech.Controllers
     [Authorize(AuthenticationSchemes ="Bearer")]
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/{v:apiversion}/curso")]
+    [Route("api/{v:apiversion}/cliente")]
     public class ClienteController : ControllerBase
     {
         private readonly ILogger<ClienteController> _logger;
