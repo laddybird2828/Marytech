@@ -14,13 +14,13 @@ namespace ApiMaryTech.Controllers
 {
     [Authorize(AuthenticationSchemes ="Bearer")]
     [ApiController]
-    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     [Route("api/{v:apiversion}/cliente")]
-    public class ClienteController : ControllerBase
+    public class ClienteControllerV2 : ControllerBase
     {
         private readonly ILogger<ClienteController> _logger;
         private readonly ApiMaryTechContext _context;
-        public ClienteController(ILogger<ClienteController> logger, ApiMaryTechContext context)
+        public ClienteControllerV2 (ILogger<ClienteController> logger, ApiMaryTechContext context)
         {
             _logger = logger;
             _context = context;
@@ -31,7 +31,7 @@ namespace ApiMaryTech.Controllers
 
         public String GetExemplo()
         {
-            return "Api v1";
+            return "Api v2";
         }
 
 
