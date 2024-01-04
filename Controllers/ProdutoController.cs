@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore;
 namespace ApiMaryTech.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes ="Bearer")]
+    [ApiVersion("1.0")]
+    [Route("api/{v:apiversion}/produto")]
     public class ProdutoController : ControllerBase
     {
         private readonly ILogger<ProdutoController> _logger;

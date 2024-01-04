@@ -13,6 +13,6 @@ namespace ApiMaryTech.Models
 
         // adicionando uma lista de compras associadas ao cliente
         // nós amamos o doutor eliezio!
-        public List<Compra> Compras { get; set; }
+        //public List<Compra> Compras { get; set; }
     }
 }

@@ -19,10 +19,10 @@ namespace ApiMaryTech.Models
 
         public decimal ProdutoValor { get; set; }
 
-        public decimal ValorTotal
-        {
-            get { return ProdutoValor * 1.1m; } 
-        }
+        //public decimal ValorTotal
+        //{
+        //    get {return ProdutoValor * 1.1m;}
+        //}
 
     }
 }
